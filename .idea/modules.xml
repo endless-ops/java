@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/java-concurrency/java-concurrency.iml" filepath="$PROJECT_DIR$/java-concurrency/java-concurrency.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-core-one/java-core-one.iml" filepath="$PROJECT_DIR$/java-core-one/java-core-one.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-sprog/java-sprog.iml" filepath="$PROJECT_DIR$/java-sprog/java-sprog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/love/love.iml" filepath="$PROJECT_DIR$/love/love.iml" />
     </modules>
   </component>
 </project>
