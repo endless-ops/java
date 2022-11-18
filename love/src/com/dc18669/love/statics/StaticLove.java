@@ -1,4 +1,4 @@
-package com.dc18669.love;
+package com.dc18669.love.statics;
 
 public class StaticLove {
 
