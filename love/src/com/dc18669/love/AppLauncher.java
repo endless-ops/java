@@ -7,6 +7,9 @@ import java.awt.*;
 public class AppLauncher {
 
     public static void main(String[] args) {
-        DynamicsLove dynamicsLove = new DynamicsLove(Color.PINK);
+        // #e77c8e
+        // 231,124,142
+        DynamicsLove dynamicsLove = new DynamicsLove(new Color(231,124,142));
+
     }
 }

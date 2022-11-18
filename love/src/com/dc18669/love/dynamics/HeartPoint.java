@@ -3,13 +3,13 @@ package com.dc18669.love.dynamics;
 /**
  * -爱心实体
  */
-public class Heart {
+public class HeartPoint {
     // 爱心横向坐标
     private int distX;
     // 爱心纵向坐标
     private int distY;
 
-    public Heart() {
+    public HeartPoint() {
     }
 
     public void setDistX(int distX) {

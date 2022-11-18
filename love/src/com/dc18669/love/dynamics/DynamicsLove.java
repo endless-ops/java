@@ -8,8 +8,8 @@ import java.awt.*;
  */
 public class DynamicsLove extends JFrame {
 
-    private static final int WIDTH = 500;
-    private static final int HEIGHT = 500;
+    private static final int WIDTH = 640;
+    private static final int HEIGHT = 640;
 
     private final HeartCanvas heartCanvas;
 

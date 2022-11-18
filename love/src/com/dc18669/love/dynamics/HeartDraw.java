@@ -1,44 +1,62 @@
 package com.dc18669.love.dynamics;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class HeartDraw {
 
-    // 爱心位置横坐标
-    private int posX;
+    //
+    private List<HeartPoint> orginalHeartPoints;
+    private List<HeartPoint> scatteredHeartPoints;
+    private List<HeartPoint> centerHeartPoints;
 
-    // 爱心位置纵坐标
-    private int posY;
+    private final int width;
+    private final int height;
 
-    // 大小
-    private int size;
+    private int count;
 
-    public HeartDraw(int size, int posX, int posY) {
-        this.size = size;
-        this.posX = posX;
-        this.posY = posY;
-    }
+    private final Graphics graphics;
 
-    public void setHeartFunc(double xc, Heart heart) {
-        double distXB = 16 * Math.pow(Math.sin(xc), 3);
-        double distYB = -(13 * Math.cos(xc) - 5 * Math.cos(2 * xc) - 2 * Math.cos(3 * xc) - Math.cos(4 * xc));
-
-        // 原式所画的心形图案较小，需要放大
-        distXB *= size;
-        distYB *= size;
-
-        // 设置心形图案在画布中的位置
-        distXB += posX;
-        distYB += posY;
-
-        heart.setDistX((int) distXB);
-        heart.setDistY((int) distYB);
-    }
-
-    /**
-     * -数据扩散
-     *
-     * @param dc 扩散系数
-     */
-    public void scattered(double dc) {
+    public HeartDraw(int width, int height, Graphics graphics) {
+        this.width = width;
+        this.height = height;
+        this.graphics = graphics;
 
     }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void getHeartPoints() {
+        orginalHeartPoints = new ArrayList<>();
+        scatteredHeartPoints = new ArrayList<>();
+        centerHeartPoints = new ArrayList<>();
+        HeartUtil heartUtil = new HeartUtil(0, width, height);
+        Random random = new Random();
+        for (int c = 0; c < count; c++) {
+            double t = random.nextDouble() * 2 * Math.PI;
+            HeartPoint heartPoint = heartUtil.setHeartFunc(t);
+            orginalHeartPoints.add(heartPoint);
+        }
+
+        for (HeartPoint heartPoint : orginalHeartPoints) {
+            for (int i = 0; i < 3; i++) {
+                HeartPoint scatteredHeartPoint = heartUtil.scattered(0.05, heartPoint.getDistX(), heartPoint.getDistY());
+                scatteredHeartPoints.add(scatteredHeartPoint);
+            }
+        }
+
+        for (int i = 0; i < 4000; i++) {
+            HeartPoint heartPoint = orginalHeartPoints.get(random.nextInt(orginalHeartPoints.size()));
+            HeartPoint centerHeartPoint = heartUtil.scattered(0.17, heartPoint.getDistX(), heartPoint.getDistY());
+            centerHeartPoints.add(centerHeartPoint);
+        }
+    }
+
+
+
+
 }

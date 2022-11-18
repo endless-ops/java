@@ -18,8 +18,6 @@ public class HeartCanvas extends Canvas implements Runnable {
 
     private final Color color;
     private final int count;
-    private int width;
-    private int height;
 
     public HeartCanvas(Color color, int count) {
         this.color = color;
@@ -29,36 +27,25 @@ public class HeartCanvas extends Canvas implements Runnable {
 
     @Override
     public void paint(Graphics g) {
-        width = getWidth() / 2;
-        height = getHeight() / 2;
+        int width = getWidth() / 2;
+        int height = getHeight() / 2;
         g.setColor(color);
 
-        drawHeart(g);
+        HeartDraw heartDraw = new HeartDraw(width, height, g);
+        heartDraw.setCount(count);
+        heartDraw.getHeartPoints();
+
+        // 设置循环跳动
+        new Thread(this).start();
     }
 
     @Override
     public void run() {
-
-    }
-
-    private void drawHeart(Graphics g) {
-        Heart heart = new Heart();
-        HeartDraw heartDraw = new HeartDraw(10, width , height);
-        for (int c = 0; c < count; c++) {
-            heartDraw.setHeartFunc(Math.random() * 2 * PI, heart);
-            g.fillOval(heart.getDistX(), heart.getDistY(), 2, 2);
-
-            // 内扩散
-            for (int i = 0; i <= 3; i++) {
-
-                g.fillOval(heart.getDistX(), heart.getDistY(), 2, 2);
-            }
-
-            // 外扩散
-            for (int i = 0; i <= 4000; i++) {
-
-                g.fillOval(heart.getDistX(), heart.getDistY(), 2, 2);
-            }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+        repaint();
     }
 }
