@@ -3,6 +3,7 @@ package com.dc18669.love;
 import com.dc18669.love.dynamics.DynamicsLove;
 
 import java.awt.*;
+import java.util.Random;
 
 public class AppLauncher {
 
